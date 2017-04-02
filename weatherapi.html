@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<link rel="stylesheet" href="weatherapi.css">
+<link href="https://fonts.googleapis.com/css?family=Revalia" rel="stylesheet">
+    <!-- <script type="text/javascript" src = "http://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b1b15e88fa797225412429c1c50c122a1"></script> -->
+  </head>
+  <body>
+<div id = "weather">
+<div id = "temp">
+  </div>
+  <div id = "disc">
+    </div>
+ </div>
+  <script type="text/javascript" >
+
+  window.onload = function(){
+navigator.geolocation.getCurrentPosition(function(location){
+
+  function getWeather() {
+      var url = "http://api.openweathermap.org/data/2.5/weather?lat="+location.coords.latitude+"&lon="+location.coords.longitude+"&units=metric&appid=417da8197898124062fd69bcb6c8da55";
+        $.getJSON(url, function (data) {
+        $("#temp").append("<p id = 'temperature'>"+ data.main.temp + " °C</p>")
+        $("#temperature").addClass("c")
+        $("#temp").append("<p id = 'city'>"+ data.name +"</p>")
+        $("#city").addClass("c")
+        if(data.cod<=232&&data.cod>=200){
+          console.log(data.weather[0].description)
+          $("#disc").append("<img id = 'image' src = 'http://openweathermap.org/img/w/11d.png' />")
+          $("#image").addClass("image")
+          $("#disc").append("<p id = 'description' style = 'font-family: Revalia'>"+data.weather[0].description+" </p>")
+          $("#description").addClass("a")
+        }
+        if(data.cod<=321&&data.cod>=300){
+          $("#disc").append("<img id = 'image' src = 'http://openweathermap.org/img/w/09d.png' />")
+          $("#image").addClass("image")
+          $("#disc").append("<p id = 'description' style = 'font-family: Revalia'>"+data.weather[0].description+" </p>")
+          $("#description").addClass("a")
+        }
+        if(data.cod<=531&&data.cod>=500){
+          $("#disc").append("<img id = 'image' src = 'http://openweathermap.org/img/w/10d.png' />")
+          $("#image").addClass("image")
+          $("#disc").append("<p id = 'description' style = 'font-family: Revalia'>"+data.weather[0].description+" </p>")
+          $("#description").addClass("a")
+        }
+        if(data.cod<=622&&data.cod>=600){
+          $("#disc").append("<img id = 'image' src = 'http://openweathermap.org/img/w/13d.png' />")
+          $("#image").addClass("image")
+          $("#disc").append("<p id = 'description' style = 'font-family: Revalia'>"+data.weather[0].description+" </p>")
+          $("#description").addClass("a")
+        }
+        if(data.cod<=781&&data.cod>=701){
+          $("#disc").append("<img id = 'image' src = 'http://openweathermap.org/img/w/50d.png' />")
+          $("#image").addClass("image")
+          $("#disc").append("<p id = 'description' style = 'font-family: Revalia'>"+data.weather[0].description+" </p>")
+          $("#description").addClass("a")
+        }
+        if(data.cod === 800){
+          $("#disc").append("<img id = 'image' src = 'http://openweathermap.org/img/w/01d.png' />")
+          $("#image").addClass("image")
+          $("#disc").append("<p id = 'description' style = 'font-family: Revalia'>"+data.weather[0].description+" </p>")
+          $("#description").addClass("a")
+        }
+      });
+  }
+getWeather();
+})
+
+  }
+</script>
+</body>
+</html>
